@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+
 def get_car_data(car):
-        
    # car =input("Enter manufacturer name:")
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
@@ -28,22 +28,16 @@ def get_car_data(car):
 
     return car
         
-        
-
-    
-    
-    
-    
-    
-    
 
 # function to save data on csv file
 def save_to_csv(data, filename):
-    pass
-
-
-
-
-
-
-
+    import csv
+    if data:
+        with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+            fieldnames = ['name', 'price']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(data)
+        print(f"Data saved to {filename}")
+    else:
+        print("No data to save!")
